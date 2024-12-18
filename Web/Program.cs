@@ -9,9 +9,9 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-app.UseAuthorization();
+
 app.UseRouting();
-app.MapGet("/", () => "Hello World!");
+app.MapGet("/", () => "Hello Worlddd!");
 
 
 app.Run();

@@ -1,0 +1,278 @@
+﻿@model HomeViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<link rel="stylesheet" href="~/styles/styles.css" />
+
+    <header class="container header active" id="home">
+        <div class="header-content">
+            <div class="left-header">
+                <div class="h-shape"></div>
+                <div class="image">
+                    <img src="~/img/@Model.Owner.OwnerImage" alt="" />
+                </div>
+            </div>
+            <div class="right-header">
+                <h1 class="name">
+                Hello , I'm <span>@Model.Owner.OwnerName </span>
+                    Front End Developer | React.JS
+                </h1>
+                <p>
+                <span style="font-weight: bold">@Model.Owner.JobTitle</span> , I’ve
+                    worked on a lot of my own projects using
+                    <span style="font-weight: bold; color: #27ae60">
+                    @Model.Owner.MainSkills
+                    </span>
+                    ,writing clean code and maintain high performance of my apps , I
+                    always stay up-to-date, Always do my best for the benefit of the
+                    team ,Learning modern technologies
+                </p>
+
+                <div class="btn-con">
+                <a href="@Model.Owner.OnlineCv"
+                       target="_blank"
+                       class="main-btn">
+                        <span class="btn-text">Preview CV</span>
+                        <span class="btn-icon"><i class="fas fa-file-pdf"></i> </span>
+                    </a>
+                </div>
+                <div class="btn-con">
+                <a href="@Model.Owner.OfflineCv"
+                       target="_blank"
+                       class="main-btn">
+                        <span class="btn-text">Download CV</span>
+                        <span class="btn-icon"><i class="fas fa-download"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!--About Section-->
+
+<section class="container about" id="about">
+    <div class="main-title mt-5">
+        <h2>About <span>me</span></h2>
+    </div>
+    <div class="about-container">
+        <div class="left-about">
+            <h4>Information About me</h4>
+            <p>
+                Welcome everyone ,I'm <span>@Model.Owner.OwnerName </span> a <span>@Model.Owner.JobTitle</span> , I have completed my military service as a reserve
+                officer in the Egyptian Air Defense Forces, and I have completed
+                it with the rank of a good role model.
+                <br />
+                <br />
+                I started dealing with website development during college, as I
+                obtained a bachelor’s degree in the field of computer science
+                <br />
+                <br />
+                I also worked on a graduation project in the same specialty and
+                obtained a high grade of excellence
+            </p>
+            <div class="btn-con">
+                <a href="https://mohamedhamadagomaa.github.io/Restaurant-Reviews/"
+                   target="_blank"
+                   class="main-btn">
+                    <span class="btn-text">Graduation Project</span>
+                    <span class="btn-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="right-about">
+            <div class="about-item">
+                <div class="abt-text">
+                    <p class="large-text">+@Model.Projects.Count</p>
+                    <p class="small-text">
+                        Projects <br />
+                        Completed
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="about-stats">
+        <h4 class="stat-title">My Skills</h4>
+        <div class="progress-bars">
+            @foreach(var skill in Model.Skills)
+            {
+                <div class="progress-bar">
+                    <p class="prog-title">@skill.Skillname</p>
+                    <div class="progress-con">
+                        <p class="prog-text">@skill.Skillpercentage%</p>
+                        <div class="progress">
+                            <span class="html"></span>
+                        </div>
+                    </div>
+                </div>
+            }
+           
+         
+        </div>
+    </div>
+    <h4 class="stat-title">My Timeline</h4>
+    <div class="timeline">
+        @foreach(var item in Model.Timelines)
+        {
+            <div class="timeline-item">
+                <div class="tl-icon">
+                   
+                    <i class="@item.TimeLineIcon"></i>
+                </div>
+                <p class="tl-duration">@item.Daterange</p>
+                <h5>@item.Title<span> - @item.Subtitle</span></h5>
+                <p>
+              @item.Description
+                </p>
+            </div>
+        }
+        
+      
+    </div>
+</section>
+
+<!--Projects-->
+<section class="container" id="portfolio">
+    <div class="main-title">
+        <h2>My <span>Portfolio</span></h2>
+    </div>
+    <p class="port-text">Here is some of my work that I've done .</p>
+    <div class="portfolios">
+        @foreach(var p in Model.Projects)
+        {
+            <div class="portfolio-item">
+                <div class="image">
+                    <img src="@p.Projectimage" alt="@p.Projectname" />
+                </div>
+                <div class="hover-items">
+                    <h3>@p.Projectname</h3>
+                    <div class="icons">
+                        <a href="@p.Projecthosturl"
+                           target="_blank"
+                           class="icon">
+
+                            <svg class="svgIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M352 256c0 22.2-1.2 43.6-3.3 64l-185.3 0c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64l185.3 0c2.2 20.4 3.3 41.8 3.3 64zm28.8-64l123.1 0c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64l-123.1 0c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32l-116.7 0c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0l-176.6 0c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0L18.6 160C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192l123.1 0c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64L8.1 320C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6l176.6 0c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352l116.7 0zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6l116.7 0z" /></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+       
+
+    </div>
+</section>
+<section class="container" id="blogs">
+    <div class="blogs-content">
+        <div class="main-title">
+            <h2>My <span>Blogs</span></h2>
+        </div>
+        <div class="blogs">
+            @foreach(var plog in Model.Plogs)
+            {
+
+                <div class="blog">
+                    <img src="@plog.Plogimage" alt="" />
+                    <div class="blog-text">
+                        <h4>@plog.Plogname</h4>
+                        <p>
+                    @plog.Description
+                        </p>
+                    </div>
+                </div>
+                
+            }
+            
+            
+        </div>
+    </div>
+</section>
+<section class="container contact" id="contact">
+    <div class="contact-container">
+        <div class="main-title">
+            <h2>Contact <span>Me</span></h2>
+        </div>
+        <div class="contact-content-con">
+            <div class="left-contact" style="flex:3">
+                <h4>Contact with me from</h4>
+                <p>
+                    Here you can contact me and you can also obtain my CV. I hope
+                    that I have succeeded in explaining everything about me.
+                </p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Location :</span>
+                        </div>
+                        <p>@Model.Owner.Location</p>
+                    </div>
+                   
+                    <div class="contact-item">
+                        <div class="icon">
+                            <i class="fas fa-user-graduate"></i>
+                            <span>Education :</span>
+                        </div>
+                        <p>
+                            <span>@Model.Owner.Education</span>
+                        </p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon">
+                            <i class="fas fa-mobile"></i>
+
+                            <span>Mobile Number :</span>
+                        </div>
+                        <p>
+                            <span>@Model.Owner.MobileNum</span>
+                        </p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon">
+                            <i class="fas fa-globe-africa"></i>
+                            <span>Languages :</span>
+                        </div>
+                        <p>
+                            <span> @Model.Owner.Languages</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="contact-icons">
+                    <div class="contact-icon">
+                        @foreach(var icon in Model.Socials)
+                        {
+                            <a href="@icon.SocialLink"
+                               target="_blank">
+                                <i class="@icon.SocialIcon"></i>
+                            </a>
+                            
+                        }
+                        
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="right-contact" style="flex:2">
+                <form action="" class="contact-form">
+               
+                    <div class="submit-btn" style="justify-content: center">
+                        <a href="@Model.Owner.OnlineCv"
+                           target="_blank"
+                           class="main-btn">
+                            <span class="btn-text">Preview CV</span>
+                            <span class="btn-icon">
+                                <i class="fas fa-download"></i>
+                            </span>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
